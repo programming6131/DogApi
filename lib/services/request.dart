@@ -1,21 +1,25 @@
-// import 'dart:convert';
 
-// import 'package:dio/dio.dart';
-// import 'package:dog_app/models/dogs_model.dart';
-// import 'package:dog_app/services/rest_client.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
+import 'dart:convert';
+import 'dart:async';
 
-// class ApiService {
-//  static RestClient restClient = RestClient();
-//  static Future<Dog> fetchDog() async {
-//    try{
-//     var response = await restClient.dio!.get(restClient.baseUrlApiV1);
-//     var dogssMap = jsonDecode(response.data) ;
-      
-//           print("This is your dogs $dogssMap");
-//       return Dog.fromJson(dogssMap);
-//    } on DioError catch (e) {
-//       throw ("${e.response?.data}");
-//     }
-  
-//   }
-// }
+final String dogApiUrl = 'https://dog.ceo/api/breeds/image/random/20';
+final String dogNames = "https://dog.ceo/api/breeds/list/all";
+
+class ApiService {
+   Future<List<String>> getDogs() async {
+    final List<String> dogs = <String>[];
+    final Response response = await http.get(Uri.parse(dogApiUrl));
+    final Map<String, dynamic> jsonResponse = json.decode(response.body);
+    jsonResponse['message'].forEach((dogImageUrl) => dogs.add(dogImageUrl));
+    return dogs;
+  }
+   Future<List<String>> getDogName() async {
+    final List<String> dogs = <String>[];
+    final Response response = await http.get(Uri.parse(dogNames));
+    final Map<String, dynamic> jsonResponse = json.decode(response.body);
+    jsonResponse['message'][0].forEach((dogImageUrl) => dogs.add(dogImageUrl));
+    return dogs;
+  }
+}
