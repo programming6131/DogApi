@@ -1,3 +1,4 @@
+import 'package:dog_app/widgets/body.dart';
 import 'package:flutter/material.dart';
 
 class DetailPage extends StatelessWidget {
@@ -10,6 +11,7 @@ class DetailPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Details"),
       ),
+      body: Body(url: url,),
     );
   }
 }

@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 
 class ItemCard extends StatelessWidget {
    String? url;
+   String? name;
    VoidCallback? press;
    ItemCard({
     Key? key,
    required this.url,
    required this.press,
+   required this.name
   }) : super(key: key);
 
   @override
@@ -29,7 +31,7 @@ class ItemCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Hero(
-                tag: "tag",
+                tag: "${url}",
                 child: Image.network(url!),
               ),
             ),
@@ -38,7 +40,7 @@ class ItemCard extends StatelessWidget {
             padding:  EdgeInsets.symmetric(vertical: kDefaultPaddin / 4),
             child: Text(
               // products is out demo list
-              "url.title",
+             "$name!",
               style: TextStyle(color: kTextLightColor),
             ),
           ),
