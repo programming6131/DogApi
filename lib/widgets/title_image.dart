@@ -5,9 +5,11 @@ class DogTitleWithImage extends StatelessWidget {
   const DogTitleWithImage({
     Key? key,
     required this.url,
+    required this.name
   }) : super(key: key);
 
   final String url;
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class DogTitleWithImage extends StatelessWidget {
                   .copyWith(color: Colors.black12, fontWeight: FontWeight.bold),
             ),
             Text(
-              "url.title",
+              name,
               style: Theme.of(context)
                   .textTheme
                   .headline4!

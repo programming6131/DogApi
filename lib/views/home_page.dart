@@ -52,6 +52,7 @@
 //   }
 // }
 import 'package:dog_app/constants/constants.dart';
+import 'package:dog_app/main.dart';
 import 'package:dog_app/services/request.dart';
 import 'package:dog_app/views/detail_page.dart';
 import 'package:dog_app/widgets/item_card.dart';
@@ -65,20 +66,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    var names;
-    @override
-    void initState() {
-     names  = ApiService().getDogName();
-     print("these are the names");
-     print(names);
-      super.initState();
-      
-    }
+  
+
     return Scaffold(
         appBar: AppBar(title: Text('Random Dogs Demo')),
         body: FutureBuilder(
+          
           future: ApiService().getDogs(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
+            print(names);
             switch (snapshot.connectionState) {
               case ConnectionState.none:
               case ConnectionState.waiting:
@@ -96,13 +92,14 @@ class _HomePageState extends State<HomePage> {
                         childAspectRatio: 0.75,
                       ),
                       itemBuilder: (context, index) => ItemCard(
-                        name: names,
+                        name: names[index],
                             url: snapshot.data[index],
                             press: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => DetailPage(
                                     url: snapshot.data[index],
+                                    name: names[index],
                                   ),
                                 )),
                           )),

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 class Body extends StatelessWidget {
   final String url;
-
-  const Body({Key? key, required this.url}) : super(key: key);
+final String name;
+  const Body({Key? key, required this.url,required this.name}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     // It provide us total height and width
@@ -32,7 +32,7 @@ class Body extends StatelessWidget {
                       topRight: Radius.circular(24),
                     ),
                   ),
-                  child: DogTitleWithImage(url: url),
+                  child: DogTitleWithImage(url: url,name: name,),
                 ),
                 
               ],

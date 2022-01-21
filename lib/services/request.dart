@@ -1,4 +1,5 @@
 
+import 'package:dog_app/extensions/map_extension.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'dart:convert';
@@ -13,13 +14,16 @@ class ApiService {
     final Response response = await http.get(Uri.parse(dogApiUrl));
     final Map<String, dynamic> jsonResponse = json.decode(response.body);
     jsonResponse['message'].forEach((dogImageUrl) => dogs.add(dogImageUrl));
+    print("images");
     return dogs;
   }
    Future<List<String>> getDogName() async {
-    final List<String> dogs = <String>[];
+     final List<String> dogs = <String>[];
     final Response response = await http.get(Uri.parse(dogNames));
     final Map<String, dynamic> jsonResponse = json.decode(response.body);
-    jsonResponse['message'][0].forEach((dogImageUrl) => dogs.add(dogImageUrl));
+
+jsonResponse['message'].keys.forEach((dog)=> dogs.add(dog));
+    print(dogs);
     return dogs;
   }
 }

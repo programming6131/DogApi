@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class DetailPage extends StatelessWidget {
   final String url;
-  const DetailPage({Key? key, required this.url}) : super(key: key);
+  final String name;
+  const DetailPage({Key? key, required this.url,required this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class DetailPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Details"),
       ),
-      body: Body(url: url,),
+      body: Body(url: url,name: name,),
     );
   }
 }
